@@ -1,0 +1,1 @@
+protoc -I=proto --dart_out=lib/proto proto/character.proto

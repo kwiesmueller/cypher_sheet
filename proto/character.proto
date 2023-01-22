@@ -1,0 +1,228 @@
+syntax = "proto3";
+
+package character;
+
+message CharacterMetadata {
+    string uuid = 1;
+    string name = 2;
+    int64 lastUpdated = 5;
+
+    // The below fields are not persisted as part of the metadata file
+    // but only generated at runtime
+    repeated int32 revisions = 3;
+    int32 storage_size = 4;
+}
+
+message Character {
+    string uuid = 1;
+
+    string name = 2;
+    string descriptor = 3;
+    string type = 4;
+    string focus = 5;
+    CharacterColor color = 17;
+
+    Progress progress = 6;
+    Stats stats = 7;
+    Recovery recovery = 8;
+    Damage damage = 9;
+
+    repeated Skill skills = 10;
+    repeated Ability abilities = 11;
+
+    int32 cypher_limit = 12;
+    repeated Cypher cyphers = 13;
+    repeated Artifact artifacts = 14;
+
+    double money = 15;
+    repeated Inventory inventories = 16;
+    repeated Item items = 18;
+
+    repeated Note notes = 19;
+}
+
+message CharacterColor {
+    int32 r = 1;
+    int32 g = 2;
+    int32 b = 3;
+}
+
+enum Advancement {
+    increaseCapabilities = 0;
+    moveTowardPerfection = 1;
+    extraEffort = 2;
+    skillTraining = 3;
+    other = 4;
+}
+
+message AdvancementInfo {
+    string name = 1;
+    string description = 2;
+}
+
+message Advancements {
+    bool increaseCapabilities = 1;
+    bool moveTowardPerfection = 2;
+    bool extraEffort = 3;
+    bool skillTraining = 4;
+    bool other = 5;
+}
+
+message Progress {
+    int32 tier = 1;
+    int32 free_xp = 2;
+    int32 total_xp = 3;
+
+    int32 max_effort = 4;
+
+    Advancements advancements=5;
+}
+
+enum PoolType {
+    intellect = 0;
+    speed = 1;
+    might = 2;
+}
+
+message Stat {
+    PoolType type = 1;
+    int32 cap = 2;
+    int32 pool = 3;
+    int32 edge = 4;
+}
+
+message Stats {
+    Stat intellect = 1;
+    Stat speed = 2;
+    Stat might = 3;
+}
+
+enum Recover {
+    one_action = 0;
+    ten_minutes = 1;
+    one_hour = 2;
+    ten_hours = 3;
+}
+
+message Recovery {
+    int32 bonus = 1;
+
+    bool one_action = 2;
+    bool ten_minutes = 3;
+    bool one_hour = 4;
+    bool ten_hours = 5;
+}
+
+message Damage {
+    bool impaired = 1;
+    bool debilitated = 2;
+}
+
+enum SkillLevel {
+    specialized = 0;
+    trained = 1;
+    inability = 2;
+}
+
+message Skill {
+    string uuid = 1;
+    string name = 2;
+    string description = 3;
+    PoolType type = 4;
+    SkillLevel level = 5;
+}
+
+message Ability {
+    string uuid = 1;
+    string name = 2;
+    string cost = 3;
+    PoolType type = 4;
+    bool enabler = 5;
+    string description = 6;
+    string short_description = 7;
+}
+
+enum CypherType {
+    cypher = 0;
+    artifact = 1;
+}
+
+message Cypher {
+    string uuid = 1;
+    string name = 2;
+    string level = 3;
+    string short_description = 4;
+    string effect = 5;
+    bool active = 6;
+    string depletion = 7;
+
+    string internal = 8;
+    string wearable = 9;
+    string usable = 10;
+}
+
+message Artifact {
+    string uuid = 1;
+    string name = 2;
+    string level = 3;
+    string short_description = 4;
+    string effect = 5;
+    bool active = 6;
+    string depletion = 7;
+    string form = 8;
+}
+
+message Inventory {
+    string uuid = 1;
+    string name = 2;
+
+    int32 order = 4;
+}
+
+enum ItemType {
+    armor = 0;
+    weapon = 10;
+    clothing = 20;
+    tool = 30;
+    oddity = 40;
+    material = 50;
+    ammo = 60;
+    plan = 70;
+    others = 900;
+}
+
+message ItemPath {
+    string inventory = 1;
+    string parent = 2;
+    string self  = 3;
+}
+
+message Item {
+    ItemPath path = 1;
+    string name = 2;
+    string description = 3;
+    string short_description = 4;
+    repeated ItemType types = 5;
+    double amount = 6;
+    double value = 8;
+    
+    optional ItemType sub_item_type = 7;
+    
+    optional int32 armor = 9; 
+}
+
+enum NoteType {
+    misc = 0;
+    location = 1;
+    character = 2;
+    item = 3;
+    quest = 4;
+}
+
+message Note {
+    string uuid = 1;
+    string title = 2;
+    NoteType type = 3;
+    string shortDescription = 4;
+    string text = 5;
+}
