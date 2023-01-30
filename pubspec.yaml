@@ -13,7 +13,7 @@ dependencies:
   google_fonts: ^3.0.1
   flutter_svg: ^1.1.6
   protobuf: ^2.1.0
-  path_provider: ^2.0.11
+  path_provider: ^2.0.12
   path: ^1.8.2
   uuid: ^3.0.7
   json_diff: ^0.2.1
