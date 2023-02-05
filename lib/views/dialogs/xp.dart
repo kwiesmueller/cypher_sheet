@@ -1,3 +1,5 @@
+import 'package:cypher_sheet/components/number.dart';
+import 'package:cypher_sheet/components/scroll.dart';
 import 'package:cypher_sheet/state/providers/character.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,48 +23,55 @@ class XPEdit extends ConsumerWidget {
             align: TextAlign.left,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 28.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: AppTextEdit(
-                  label: "Free XP",
-                  value: ref.watch(progressProvider).freeXp.toString(),
-                  textInputType: TextInputType.number,
-                  onEditingComplete: (newValue) {
-                    ref
-                        .read(characterProvider.notifier)
-                        .editFreeXP(int.tryParse(newValue) ?? 0);
-                  },
+        Expanded(
+            child: AppScrollView(customPadding: EdgeInsets.zero, slivers: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 28.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: AppTextEdit(
+                    label: "Free XP",
+                    value: ref.watch(progressProvider).freeXp.toString(),
+                    textInputType: TextInputType.number,
+                    onEditingComplete: (newValue) {
+                      ref
+                          .read(characterProvider.notifier)
+                          .editFreeXP(int.tryParse(newValue) ?? 0);
+                    },
+                  ),
                 ),
-              ),
-              const SizedBox(width: 28.0),
-              Expanded(
-                child: AppTextEdit(
-                  label: "Total XP",
-                  value: ref.watch(progressProvider).totalXp.toString(),
-                  textInputType: TextInputType.number,
-                  onEditingComplete: (newValue) {
-                    ref
-                        .read(characterProvider.notifier)
-                        .editTotalXP(int.tryParse(newValue) ?? 0);
-                  },
+                const SizedBox(width: 28.0),
+                Expanded(
+                  child: AppTextEdit(
+                    label: "Total XP",
+                    value: ref.watch(progressProvider).totalXp.toString(),
+                    textInputType: TextInputType.number,
+                    onEditingComplete: (newValue) {
+                      ref
+                          .read(characterProvider.notifier)
+                          .editTotalXP(int.tryParse(newValue) ?? 0);
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        XPGainer(
-          gainXP: (add) {
-            ref.read(characterProvider.notifier).addXP(add);
-            closeDialog(context);
-          },
-        ),
-        const Spacer(),
+          XPGainer(
+            gainXP: (add) {
+              ref.read(characterProvider.notifier).addXP(add);
+              closeDialog(context);
+            },
+            spendXP: (spend) {
+              ref.read(characterProvider.notifier).spendXP(spend);
+              closeDialog(context);
+            },
+          ),
+        ])),
+        const SizedBox(height: 28.0),
         AppBox(
           onTap: (() {
             closeDialog(context);
@@ -75,9 +84,10 @@ class XPEdit extends ConsumerWidget {
 }
 
 class XPGainer extends StatefulWidget {
-  const XPGainer({super.key, required this.gainXP});
+  const XPGainer({super.key, required this.gainXP, required this.spendXP});
 
   final Function(int add) gainXP;
+  final Function(int spend) spendXP;
 
   @override
   State<XPGainer> createState() => _XPGainerState();
@@ -91,15 +101,16 @@ class _XPGainerState extends State<XPGainer> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(bottom: 16.0),
-          child: AppText(
-            "Gain XP",
-            align: TextAlign.center,
-          ),
+        const SizedBox(height: 16),
+        AppBox(
+          color: Theme.of(context).colorScheme.error,
+          onTap: () {
+            widget.spendXP((int.tryParse(controller.value.text) ?? 0));
+          },
+          child: const AppText("Spend"),
         ),
         Padding(
-          padding: const EdgeInsets.only(bottom: 16.0),
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: AppTextEdit(
             value: "1",
             textInputType: TextInputType.number,

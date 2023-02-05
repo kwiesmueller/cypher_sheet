@@ -1,3 +1,4 @@
+import 'package:cypher_sheet/components/scroll.dart';
 import 'package:cypher_sheet/state/providers/character.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,31 +29,35 @@ class Advance extends ConsumerWidget {
             align: TextAlign.left,
           ),
         ),
-        NumberChip(label: "Free XP", value: progress.freeXp),
-        const SizedBox(height: 8.0),
-        NumberChip(
-            label: "Available\nAdvancements",
-            value: (progress.freeXp / progress.advancements.xpPerAdvancement())
-                .floor()),
+        Expanded(
+            child: AppScrollView(customPadding: EdgeInsets.zero, slivers: [
+          NumberChip(label: "Free XP", value: progress.freeXp),
+          const SizedBox(height: 8.0),
+          NumberChip(
+              label: "Available\nAdvancements",
+              value:
+                  (progress.freeXp / progress.advancements.xpPerAdvancement())
+                      .floor()),
+          const SizedBox(height: 16.0),
+          const AdvancementCheckBox(
+              advancement: Advancement.increaseCapabilities),
+          const AdvancementCheckBox(
+              advancement: Advancement.moveTowardPerfection),
+          const AdvancementCheckBox(advancement: Advancement.extraEffort),
+          const AdvancementCheckBox(advancement: Advancement.skillTraining),
+          const AdvancementCheckBox(advancement: Advancement.other),
+          if (canAdvanceTier) const SizedBox(height: 28.0),
+          if (canAdvanceTier)
+            AppBox(
+              color: Theme.of(context).colorScheme.primary,
+              onTap: () {
+                ref.read(characterProvider.notifier).advanceTier(1);
+                closeDialog(context);
+              },
+              child: const AppText("Advance Tier"),
+            ),
+        ])),
         const SizedBox(height: 16.0),
-        const AdvancementCheckBox(
-            advancement: Advancement.increaseCapabilities),
-        const AdvancementCheckBox(
-            advancement: Advancement.moveTowardPerfection),
-        const AdvancementCheckBox(advancement: Advancement.extraEffort),
-        const AdvancementCheckBox(advancement: Advancement.skillTraining),
-        const AdvancementCheckBox(advancement: Advancement.other),
-        if (canAdvanceTier) const SizedBox(height: 28.0),
-        if (canAdvanceTier)
-          AppBox(
-            color: Theme.of(context).colorScheme.primary,
-            onTap: () {
-              ref.read(characterProvider.notifier).advanceTier(1);
-              closeDialog(context);
-            },
-            child: const AppText("Advance Tier"),
-          ),
-        const Spacer(),
         AppBox(
           onTap: (() {
             closeDialog(context);

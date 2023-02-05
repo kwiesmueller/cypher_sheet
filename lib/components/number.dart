@@ -86,10 +86,14 @@ class NumberSelector extends StatefulWidget {
     super.key,
     required this.add,
     required this.remove,
+    this.addLabel = "Add",
+    this.removeLabel = "Remove",
   });
 
   final Function(int value) add;
   final Function(int value) remove;
+  final String addLabel;
+  final String removeLabel;
 
   @override
   State<StatefulWidget> createState() => _NumberSelectorState();
@@ -153,7 +157,7 @@ class _NumberSelectorState extends State<NumberSelector> {
                   controller.jumpToPage(0);
                 }),
                 color: Theme.of(context).colorScheme.primary,
-                label: "Add",
+                label: widget.addLabel,
               ),
               Expanded(
                 child: Padding(
@@ -179,7 +183,7 @@ class _NumberSelectorState extends State<NumberSelector> {
                   controller.jumpToPage(0);
                 }),
                 color: Theme.of(context).colorScheme.error,
-                label: "Remove",
+                label: widget.removeLabel,
               ),
             ],
           ),

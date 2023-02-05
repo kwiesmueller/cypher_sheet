@@ -2,6 +2,7 @@ import 'package:cypher_sheet/components/checkbox.dart';
 import 'package:cypher_sheet/components/icon.dart';
 import 'package:cypher_sheet/components/icons.dart';
 import 'package:cypher_sheet/components/markdown.dart';
+import 'package:cypher_sheet/components/scroll.dart';
 import 'package:cypher_sheet/extensions/pool.dart';
 import 'package:cypher_sheet/state/providers/abilities.dart';
 import 'package:cypher_sheet/views/dialogs/create_ability.dart';
@@ -75,39 +76,42 @@ class ViewAbility extends ConsumerWidget {
               maxLines: 3,
             ),
           ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AppBox(
-                padding: 4,
-                borderRadius: 8,
-                color: Theme.of(context).colorScheme.surfaceVariant,
-                child: AppIcon(
-                  ability.type.toIcon(),
-                  size: 22,
+        Expanded(
+            child: AppScrollView(customPadding: EdgeInsets.zero, slivers: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AppBox(
+                  padding: 4,
+                  borderRadius: 8,
+                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  child: AppIcon(
+                    ability.type.toIcon(),
+                    size: 22,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 16.0),
-              AppCheckbox(
-                active: ability.enabler,
-              ),
-              const SizedBox(width: 16.0),
-              AppText(
-                "Enabler",
-                style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
-                align: TextAlign.left,
-              ),
-            ],
+                const SizedBox(width: 16.0),
+                AppCheckbox(
+                  active: ability.enabler,
+                ),
+                const SizedBox(width: 16.0),
+                AppText(
+                  "Enabler",
+                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                  align: TextAlign.left,
+                ),
+              ],
+            ),
           ),
-        ),
+          const SizedBox(height: 16.0),
+          AppMarkdown(data: ability.description),
+        ])),
         const SizedBox(height: 16.0),
-        AppMarkdown(data: ability.description),
-        const Spacer(),
         AppBox(
           onTap: (() {
             closeDialog(context);

@@ -243,6 +243,18 @@ class CharacterNotifier extends StateNotifier<Character> {
     });
   }
 
+  void spendXP(int value) {
+    if (value == 0) {
+      return;
+    }
+    state = state.rebuild((character) {
+      character.progress = character.progress.rebuild((progress) {
+        // we don't remove totalXp as it is meant to record total "gained" xp
+        progress.freeXp -= value;
+      });
+    });
+  }
+
   void resetAllPools() {
     state = state.rebuild((character) {
       character.stats = character.stats.rebuild((stats) {
