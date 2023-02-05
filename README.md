@@ -132,6 +132,37 @@ to be made available outside the internal testing system
 ([#7](https://github.com/kwiesmueller/cypher_sheet/issues/7#issue-1551553202)).
 But I'm happy to talk about options here.
 
+### Backing up characters
+
+Please keep in mind that this project is under active development. While a large
+effort already went into making sure character changes are safe, problems can
+still happen.
+
+While using the app for real characters, please regularly export them
+as backups.
+
+To do so:
+
+1. Go to the character list
+2. Click the edit icon on your character
+3. Click the share icon in the top right corner of the screen
+4. Select `Share Latest Revision`
+5. This will give you a file that can be shared and save however you like
+(for example in your Google Drive/Dropbox etc.)
+
+### Restoring characters
+
+To restore a backup from file:
+
+1. Go to the character list
+2. Click the developer icon in the top right corner
+3. Click `Import Character`
+4. Click `Import Revision File`
+5. This should give you a file browser to select your backup
+6. The imported revision will be added to your existing character, with the same
+ID, as a new revision
+7. If the character does not exist it is created
+
 ## Contributing
 
 The primary goal of this project is to provide a fun solution for a game between
