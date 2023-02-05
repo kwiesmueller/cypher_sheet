@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.1.1
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.3
   flutter_svg: ^1.1.6
   protobuf: ^2.1.0
   path_provider: ^2.0.11
