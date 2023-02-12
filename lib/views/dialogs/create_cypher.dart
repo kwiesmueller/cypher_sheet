@@ -235,6 +235,7 @@ class _CreateAbilityState extends ConsumerState<CreateCypher> {
         AppBox(
           onTap: (() {
             final cypher = Cypher(
+              uuid: widget.uuid,
               name: name.value.text,
               level: level.value.text,
               shortDescription: shortDescription.value.text,

@@ -2,7 +2,7 @@ import 'package:cypher_sheet/components/dialog.dart';
 import 'package:cypher_sheet/extensions/cypher.dart';
 import 'package:cypher_sheet/proto/character.pb.dart';
 import 'package:cypher_sheet/state/providers/cyphers.dart';
-import 'package:cypher_sheet/views/dialogs/create_artifact.dart';
+import 'package:cypher_sheet/views/dialogs/view_artifact.dart';
 import 'package:cypher_sheet/views/dialogs/view_cypher.dart';
 import 'package:flutter/material.dart';
 import 'package:cypher_sheet/components/box.dart';
@@ -43,11 +43,15 @@ class CypherListItem extends ConsumerWidget {
       borderRadius: 12,
       onTap: () {
         if (type == CypherType.cypher) {
-          showAppDialog(context, ViewCypher(uuid: uuid));
+          showAppDialog(
+            context,
+            ViewCypher(uuid: uuid),
+            fullscreen: true,
+          );
         } else {
           showAppDialog(
             context,
-            CreateArtifact.fromState(ref.read(artifactProvider(uuid))),
+            ViewArtifact(uuid: uuid),
             fullscreen: true,
           );
         }

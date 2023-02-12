@@ -212,6 +212,7 @@ class _CreateAbilityState extends ConsumerState<CreateArtifact> {
         AppBox(
           onTap: (() {
             final artifact = Artifact(
+              uuid: widget.uuid,
               name: name.value.text,
               level: level.value.text,
               shortDescription: shortDescription.value.text,
