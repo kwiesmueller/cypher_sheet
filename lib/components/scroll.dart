@@ -28,6 +28,7 @@ class AppScrollView extends StatelessWidget {
                   child: slivers[index]);
             },
             childCount: slivers.length,
+            addAutomaticKeepAlives: true,
           ),
         ),
         const SliverToBoxAdapter(

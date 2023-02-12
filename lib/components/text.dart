@@ -111,6 +111,7 @@ class _AppTextEditState extends ConsumerState<AppTextEdit> {
   @override
   void initState() {
     super.initState();
+
     valueWhenCreated = widget.value;
     shouldDisposeController = widget.controller == null;
     shouldDisposeFocusNode = widget.focusNode == null;
@@ -122,7 +123,10 @@ class _AppTextEditState extends ConsumerState<AppTextEdit> {
         enableEditing();
       });
     }
-    controller.text = widget.value;
+
+    if (controller.text.isEmpty) {
+      controller.text = widget.value;
+    }
 
     if (widget.startFocused) {
       focusNode.requestFocus();
@@ -132,12 +136,14 @@ class _AppTextEditState extends ConsumerState<AppTextEdit> {
           TextSelection(baseOffset: 0, extentOffset: controller.text.length);
     }
 
-    focusNode.addListener(() {
-      setState(() {
-        if (!focusNode.hasPrimaryFocus) {
-          stopEditing();
-        }
-      });
+    focusNode.addListener(focusNodeListener);
+  }
+
+  void focusNodeListener() {
+    setState(() {
+      if (!focusNode.hasPrimaryFocus) {
+        stopEditing();
+      }
     });
   }
 
@@ -149,6 +155,8 @@ class _AppTextEditState extends ConsumerState<AppTextEdit> {
     if (shouldDisposeController) {
       controller.dispose();
     }
+
+    focusNode.removeListener(focusNodeListener);
 
     super.dispose();
   }
