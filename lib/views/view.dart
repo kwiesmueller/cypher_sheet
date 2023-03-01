@@ -5,18 +5,18 @@ import 'package:cypher_sheet/components/icons.dart';
 class AppView extends StatefulWidget {
   const AppView({super.key, required this.views});
 
-  final List<View> views;
+  final List<ViewConfig> views;
 
   @override
   State<AppView> createState() => _AppViewState();
 }
 
-class View {
+class ViewConfig {
   final String name;
   final AppIcons icon;
   final Widget view;
 
-  View(this.name, this.icon, this.view);
+  ViewConfig(this.name, this.icon, this.view);
 }
 
 class _AppViewState extends State<AppView>

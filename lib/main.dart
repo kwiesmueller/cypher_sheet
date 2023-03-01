@@ -84,13 +84,13 @@ class CharacterSheet extends StatelessWidget {
       },
       child: AppView(
         views: [
-          View("Database", AppIcons.database, Container()),
-          View("Skills", AppIcons.skills, const SkillsView()),
-          View("Abilities", AppIcons.abilities, const AbilitiesView()),
-          View("Stats", AppIcons.stats, const StatsView()),
-          View("Cyphers", AppIcons.cypher, const CyphersView()),
-          View("Equipment", AppIcons.equipment, const EquipmentView()),
-          View("Notes", AppIcons.notes, const NotesView()),
+          ViewConfig("Database", AppIcons.database, Container()),
+          ViewConfig("Skills", AppIcons.skills, const SkillsView()),
+          ViewConfig("Abilities", AppIcons.abilities, const AbilitiesView()),
+          ViewConfig("Stats", AppIcons.stats, const StatsView()),
+          ViewConfig("Cyphers", AppIcons.cypher, const CyphersView()),
+          ViewConfig("Equipment", AppIcons.equipment, const EquipmentView()),
+          ViewConfig("Notes", AppIcons.notes, const NotesView()),
         ],
       ),
     );

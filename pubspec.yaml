@@ -10,18 +10,18 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.1.1
-  google_fonts: ^3.0.1
-  flutter_svg: ^1.1.6
+  google_fonts: ^4.0.3
+  flutter_svg: ^2.0.2
   protobuf: ^2.1.0
   path_provider: ^2.0.11
   path: ^1.8.2
   uuid: ^3.0.7
   json_diff: ^0.2.1
   flutter_colorpicker: ^1.0.3
-  share_plus: ^6.3.0
+  share_plus: ^6.3.1
   file_picker: ^5.2.5
-  flutter_markdown: ^0.6.13
-  url_launcher: ^6.1.8
+  flutter_markdown: ^0.6.14
+  url_launcher: ^6.1.10
   equatable: ^2.0.5
 
 dev_dependencies:
