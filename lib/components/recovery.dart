@@ -18,15 +18,14 @@ class RecoveryView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final recoveries = ref.watch(recoveryProvider);
-    return AppBox(
+    return const AppBox(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          RecoveryStats(recoveries),
-          const AppSpacer(),
-          RecoveryCheckboxes(recoveries),
+          RecoveryStats(),
+          AppSpacer(),
+          RecoveryCheckboxes(),
         ],
       ),
     );
@@ -34,12 +33,11 @@ class RecoveryView extends ConsumerWidget {
 }
 
 class RecoveryStats extends ConsumerWidget {
-  const RecoveryStats(this.recovery, {super.key});
-
-  final Recovery recovery;
+  const RecoveryStats({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final recovery = ref.watch(recoveryProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,12 +69,11 @@ class RecoveryStats extends ConsumerWidget {
 }
 
 class RecoveryCheckboxes extends ConsumerWidget {
-  const RecoveryCheckboxes(this.recovery, {super.key});
-
-  final Recovery recovery;
+  const RecoveryCheckboxes({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final recovery = ref.watch(recoveryProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,

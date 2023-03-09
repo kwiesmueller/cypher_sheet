@@ -192,13 +192,11 @@ class _CreateAbilityState extends ConsumerState<CreateAbility> {
             initialValue: shortDescription.text,
           ),
           const SizedBox(height: 16.0),
-          Expanded(
-            child: DialogTextBox(
-              controller: description,
-              label: "Description",
-              initialValue: description.text,
-              multiLine: true,
-            ),
+          DialogTextBox(
+            controller: description,
+            label: "Description",
+            initialValue: description.text,
+            multiLine: true,
           ),
         ])),
         const SizedBox(height: 16.0),
