@@ -47,8 +47,10 @@ class CharactersView extends ConsumerWidget {
 Note: You are using a work-in-progress build of this app.
 Features may not work as intended or your data may not be persisted correctly.
 Please keep a paper backup of your character.
+
+You can report feedback to app-feedback@kwiesmueller.dev.
           """,
-          maxLines: 9,
+          maxLines: 10,
           style: Theme.of(context).textTheme.labelLarge,
           align: TextAlign.left,
           overflow: TextOverflow.ellipsis,
@@ -131,10 +133,6 @@ class CharacterListItem extends ConsumerWidget {
                       child: const AppIcon(AppIcons.edit, size: 24),
                     )
                   ],
-                ),
-                AppText(
-                  snapshot.data!.uuid,
-                  style: Theme.of(context).textTheme.labelSmall,
                 ),
                 AppText(
                   "Last updated @ ${DateTime.fromMillisecondsSinceEpoch(snapshot.data!.lastUpdated.toInt()).toIso8601String()}",
