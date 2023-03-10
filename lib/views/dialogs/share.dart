@@ -6,6 +6,7 @@ import 'package:cypher_sheet/components/dialog.dart';
 import 'package:cypher_sheet/components/text.dart';
 import 'package:cypher_sheet/proto/character.pb.dart';
 import 'package:cypher_sheet/state/providers/character.dart';
+import 'package:cypher_sheet/state/storage/api.dart';
 import 'package:cypher_sheet/state/storage/file.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,17 @@ class ShareCharacter extends ConsumerWidget {
           },
           child: const AppText(
             "Log Latest Revision",
+            maxLines: 2,
+          ),
+        ),
+        const SizedBox(height: 28.0),
+        AppBox(
+          onTap: () async {
+            final revision = await readLatestCharacterRevision(uuid);
+            await writeCharacterRevisionToAPI(revision);
+          },
+          child: const AppText(
+            "Upload Latest Revision",
             maxLines: 2,
           ),
         ),
