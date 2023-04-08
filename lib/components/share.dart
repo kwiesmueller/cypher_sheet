@@ -13,8 +13,10 @@ class ShareObjectButton extends StatelessWidget {
     return SVGBox(
       padding: 12,
       onTap: (() async {
-        Share.shareXFiles(subject: "Shared from Cypher Sheet", [
-          await getFile(),
+        final file = await getFile();
+
+        Share.shareXFiles(subject: file.name, [
+          file,
         ]);
       }),
       icon: AppIcons.share,
