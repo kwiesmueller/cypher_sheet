@@ -53,3 +53,14 @@ extension Label on ItemType {
     return name[0].toUpperCase() + name.substring(1);
   }
 }
+
+extension ShareHelper on Item {
+  SharedObject share() {
+    // TODO: figure out how to handle subItems.
+    return SharedObject(
+      uuid: path.self,
+      name: name,
+      item: this,
+    );
+  }
+}

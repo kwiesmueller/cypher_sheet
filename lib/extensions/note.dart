@@ -30,3 +30,13 @@ extension Label on NoteType {
     return name[0].toUpperCase() + name.substring(1);
   }
 }
+
+extension ShareHelper on Note {
+  SharedObject share() {
+    return SharedObject(
+      uuid: uuid,
+      name: title,
+      note: this,
+    );
+  }
+}

@@ -2016,3 +2016,201 @@ class Note extends $pb.GeneratedMessage {
   void clearText() => clearField(5);
 }
 
+enum SharedObject_Object {
+  character, 
+  skill, 
+  ability, 
+  cypher, 
+  artifact, 
+  item, 
+  note, 
+  notSet
+}
+
+class SharedObject extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, SharedObject_Object> _SharedObject_ObjectByTag = {
+    10 : SharedObject_Object.character,
+    20 : SharedObject_Object.skill,
+    30 : SharedObject_Object.ability,
+    40 : SharedObject_Object.cypher,
+    50 : SharedObject_Object.artifact,
+    60 : SharedObject_Object.item,
+    70 : SharedObject_Object.note,
+    0 : SharedObject_Object.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SharedObject', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'character'), createEmptyInstance: create)
+    ..oo(0, [10, 20, 30, 40, 50, 60, 70])
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'uuid')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
+    ..aOM<Character>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'character', subBuilder: Character.create)
+    ..aOM<Skill>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'skill', subBuilder: Skill.create)
+    ..aOM<Ability>(30, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'ability', subBuilder: Ability.create)
+    ..aOM<Cypher>(40, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cypher', subBuilder: Cypher.create)
+    ..aOM<Artifact>(50, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'artifact', subBuilder: Artifact.create)
+    ..aOM<Item>(60, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'item', subBuilder: Item.create)
+    ..aOM<Note>(70, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'note', subBuilder: Note.create)
+    ..hasRequiredFields = false
+  ;
+
+  SharedObject._() : super();
+  factory SharedObject({
+    $core.String? uuid,
+    $core.String? name,
+    Character? character,
+    Skill? skill,
+    Ability? ability,
+    Cypher? cypher,
+    Artifact? artifact,
+    Item? item,
+    Note? note,
+  }) {
+    final _result = create();
+    if (uuid != null) {
+      _result.uuid = uuid;
+    }
+    if (name != null) {
+      _result.name = name;
+    }
+    if (character != null) {
+      _result.character = character;
+    }
+    if (skill != null) {
+      _result.skill = skill;
+    }
+    if (ability != null) {
+      _result.ability = ability;
+    }
+    if (cypher != null) {
+      _result.cypher = cypher;
+    }
+    if (artifact != null) {
+      _result.artifact = artifact;
+    }
+    if (item != null) {
+      _result.item = item;
+    }
+    if (note != null) {
+      _result.note = note;
+    }
+    return _result;
+  }
+  factory SharedObject.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SharedObject.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  SharedObject clone() => SharedObject()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  SharedObject copyWith(void Function(SharedObject) updates) => super.copyWith((message) => updates(message as SharedObject)) as SharedObject; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SharedObject create() => SharedObject._();
+  SharedObject createEmptyInstance() => create();
+  static $pb.PbList<SharedObject> createRepeated() => $pb.PbList<SharedObject>();
+  @$core.pragma('dart2js:noInline')
+  static SharedObject getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SharedObject>(create);
+  static SharedObject? _defaultInstance;
+
+  SharedObject_Object whichObject() => _SharedObject_ObjectByTag[$_whichOneof(0)]!;
+  void clearObject() => clearField($_whichOneof(0));
+
+  @$pb.TagNumber(2)
+  $core.String get uuid => $_getSZ(0);
+  @$pb.TagNumber(2)
+  set uuid($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasUuid() => $_has(0);
+  @$pb.TagNumber(2)
+  void clearUuid() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(3)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(3)
+  void clearName() => clearField(3);
+
+  @$pb.TagNumber(10)
+  Character get character => $_getN(2);
+  @$pb.TagNumber(10)
+  set character(Character v) { setField(10, v); }
+  @$pb.TagNumber(10)
+  $core.bool hasCharacter() => $_has(2);
+  @$pb.TagNumber(10)
+  void clearCharacter() => clearField(10);
+  @$pb.TagNumber(10)
+  Character ensureCharacter() => $_ensure(2);
+
+  @$pb.TagNumber(20)
+  Skill get skill => $_getN(3);
+  @$pb.TagNumber(20)
+  set skill(Skill v) { setField(20, v); }
+  @$pb.TagNumber(20)
+  $core.bool hasSkill() => $_has(3);
+  @$pb.TagNumber(20)
+  void clearSkill() => clearField(20);
+  @$pb.TagNumber(20)
+  Skill ensureSkill() => $_ensure(3);
+
+  @$pb.TagNumber(30)
+  Ability get ability => $_getN(4);
+  @$pb.TagNumber(30)
+  set ability(Ability v) { setField(30, v); }
+  @$pb.TagNumber(30)
+  $core.bool hasAbility() => $_has(4);
+  @$pb.TagNumber(30)
+  void clearAbility() => clearField(30);
+  @$pb.TagNumber(30)
+  Ability ensureAbility() => $_ensure(4);
+
+  @$pb.TagNumber(40)
+  Cypher get cypher => $_getN(5);
+  @$pb.TagNumber(40)
+  set cypher(Cypher v) { setField(40, v); }
+  @$pb.TagNumber(40)
+  $core.bool hasCypher() => $_has(5);
+  @$pb.TagNumber(40)
+  void clearCypher() => clearField(40);
+  @$pb.TagNumber(40)
+  Cypher ensureCypher() => $_ensure(5);
+
+  @$pb.TagNumber(50)
+  Artifact get artifact => $_getN(6);
+  @$pb.TagNumber(50)
+  set artifact(Artifact v) { setField(50, v); }
+  @$pb.TagNumber(50)
+  $core.bool hasArtifact() => $_has(6);
+  @$pb.TagNumber(50)
+  void clearArtifact() => clearField(50);
+  @$pb.TagNumber(50)
+  Artifact ensureArtifact() => $_ensure(6);
+
+  @$pb.TagNumber(60)
+  Item get item => $_getN(7);
+  @$pb.TagNumber(60)
+  set item(Item v) { setField(60, v); }
+  @$pb.TagNumber(60)
+  $core.bool hasItem() => $_has(7);
+  @$pb.TagNumber(60)
+  void clearItem() => clearField(60);
+  @$pb.TagNumber(60)
+  Item ensureItem() => $_ensure(7);
+
+  @$pb.TagNumber(70)
+  Note get note => $_getN(8);
+  @$pb.TagNumber(70)
+  set note(Note v) { setField(70, v); }
+  @$pb.TagNumber(70)
+  $core.bool hasNote() => $_has(8);
+  @$pb.TagNumber(70)
+  void clearNote() => clearField(70);
+  @$pb.TagNumber(70)
+  Note ensureNote() => $_ensure(8);
+}
+

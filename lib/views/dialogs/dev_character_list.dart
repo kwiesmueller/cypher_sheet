@@ -1,5 +1,9 @@
+import 'package:cypher_sheet/components/scroll.dart';
+import 'package:cypher_sheet/proto/character.pb.dart';
 import 'package:cypher_sheet/state/providers/character.dart';
-import 'package:cypher_sheet/views/dialogs/share.dart';
+import 'package:cypher_sheet/state/providers/import.dart';
+import 'package:cypher_sheet/state/providers/inventories.dart';
+import 'package:cypher_sheet/views/dialogs/share_character.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cypher_sheet/components/box.dart';
@@ -13,10 +17,8 @@ class DevCharacterList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
+    return AppScrollView(
+      slivers: [
         Padding(
           padding: const EdgeInsets.only(bottom: 16.0),
           child: AppText(
@@ -53,7 +55,101 @@ class DevCharacterList extends ConsumerWidget {
           },
           child: const AppText("Show Licenses"),
         ),
-        const Spacer(),
+        const SizedBox(height: 28.0),
+        AppBox(
+          onTap: () {
+            closeDialog(context);
+            ref.read(importObjectProvider.notifier).state = SharedObject(
+              uuid: "test-uuid",
+              cypher: Cypher(
+                uuid: "test-uuid",
+                name: "Test Cypher",
+                active: false,
+              ),
+            );
+          },
+          child: const AppText("Import Test Cypher"),
+        ),
+        const SizedBox(height: 28.0),
+        AppBox(
+          onTap: () {
+            closeDialog(context);
+            ref.read(importObjectProvider.notifier).state = SharedObject(
+              uuid: "test-uuid2",
+              artifact: Artifact(
+                uuid: "test-uuid2",
+                name: "Test Artifact",
+                active: true,
+              ),
+            );
+          },
+          child: const AppText("Import Test Artifact"),
+        ),
+        const SizedBox(height: 28.0),
+        AppBox(
+          onTap: () {
+            closeDialog(context);
+            ref.read(importObjectProvider.notifier).state = SharedObject(
+              uuid: "test-uuid3",
+              item: Item(
+                  path: ItemPath(
+                    inventory: inventoryNameSelf,
+                    parent: null,
+                    self: "test-uuid3",
+                  ),
+                  name: "Test Item",
+                  shortDescription: "Imported"),
+            );
+          },
+          child: const AppText("Import Test Item"),
+        ),
+        const SizedBox(height: 28.0),
+        AppBox(
+          onTap: () {
+            closeDialog(context);
+            ref.read(importObjectProvider.notifier).state = SharedObject(
+              uuid: "test-uuid4",
+              ability: Ability(
+                uuid: "test-uuid4",
+                name: "Test Ability",
+                enabler: true,
+              ),
+            );
+          },
+          child: const AppText("Import Test Ability"),
+        ),
+        const SizedBox(height: 28.0),
+        AppBox(
+          onTap: () {
+            closeDialog(context);
+            ref.read(importObjectProvider.notifier).state = SharedObject(
+              uuid: "test-uuid5",
+              skill: Skill(
+                uuid: "test-uuid5",
+                name: "Test Skill",
+                level: SkillLevel.inability,
+              ),
+            );
+          },
+          child: const AppText("Import Test Skill"),
+        ),
+        const SizedBox(height: 28.0),
+        AppBox(
+          onTap: () {
+            closeDialog(context);
+            ref.read(importObjectProvider.notifier).state = SharedObject(
+              uuid: "test-uuid6",
+              note: Note(
+                uuid: "test-uuid6",
+                title: "Test Note",
+                shortDescription: "Foo",
+                type: NoteType.item,
+              ),
+            );
+          },
+          child: const AppText("Import Test Note"),
+        ),
+        const SizedBox(height: 28.0),
         AppBox(
           onTap: (() {
             closeDialog(context);

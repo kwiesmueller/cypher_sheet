@@ -4,7 +4,7 @@ import 'package:cypher_sheet/extensions/metadata.dart';
 import 'package:cypher_sheet/proto/character.pb.dart';
 import 'package:cypher_sheet/state/providers/character.dart';
 import 'package:cypher_sheet/state/storage/file.dart';
-import 'package:cypher_sheet/views/dialogs/share.dart';
+import 'package:cypher_sheet/views/dialogs/share_character.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cypher_sheet/components/box.dart';

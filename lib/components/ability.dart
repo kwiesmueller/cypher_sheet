@@ -1,7 +1,7 @@
 import 'package:cypher_sheet/components/dialog.dart';
 import 'package:cypher_sheet/extensions/pool.dart';
 import 'package:cypher_sheet/state/providers/abilities.dart';
-import 'package:cypher_sheet/views/dialogs/view_ability.dart';
+import 'package:cypher_sheet/views/dialogs/object/ability/view.dart';
 import 'package:flutter/material.dart';
 import 'package:cypher_sheet/components/box.dart';
 import 'package:cypher_sheet/components/icon.dart';

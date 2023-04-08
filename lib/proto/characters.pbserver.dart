@@ -16,18 +16,30 @@ import 'characters.pbjson.dart';
 export 'characters.pb.dart';
 
 abstract class CharactersServiceBase extends $pb.GeneratedService {
-  $async.Future<$1.CharacterWritten> writeCharacterRevision($pb.ServerContext ctx, $1.WriteCharacter request);
+  $async.Future<$1.CharacterCreated> create($pb.ServerContext ctx, $1.CreateCharacter request);
+  $async.Future<$1.RevisionWritten> writeCharacterRevision($pb.ServerContext ctx, $1.WriteRevision request);
+  $async.Future<$1.RevisionRead> readCharacterRevision($pb.ServerContext ctx, $1.ReadRevision request);
+  $async.Future<$1.RevisionRead> readLatestCharacterRevision($pb.ServerContext ctx, $1.ReadLatestRevision request);
+  $async.Future<$1.CharacterDeleted> delete($pb.ServerContext ctx, $1.DeleteCharacter request);
 
   $pb.GeneratedMessage createRequest($core.String method) {
     switch (method) {
-      case 'WriteCharacterRevision': return $1.WriteCharacter();
+      case 'Create': return $1.CreateCharacter();
+      case 'WriteCharacterRevision': return $1.WriteRevision();
+      case 'ReadCharacterRevision': return $1.ReadRevision();
+      case 'ReadLatestCharacterRevision': return $1.ReadLatestRevision();
+      case 'Delete': return $1.DeleteCharacter();
       default: throw $core.ArgumentError('Unknown method: $method');
     }
   }
 
   $async.Future<$pb.GeneratedMessage> handleCall($pb.ServerContext ctx, $core.String method, $pb.GeneratedMessage request) {
     switch (method) {
-      case 'WriteCharacterRevision': return this.writeCharacterRevision(ctx, request as $1.WriteCharacter);
+      case 'Create': return this.create(ctx, request as $1.CreateCharacter);
+      case 'WriteCharacterRevision': return this.writeCharacterRevision(ctx, request as $1.WriteRevision);
+      case 'ReadCharacterRevision': return this.readCharacterRevision(ctx, request as $1.ReadRevision);
+      case 'ReadLatestCharacterRevision': return this.readLatestCharacterRevision(ctx, request as $1.ReadLatestRevision);
+      case 'Delete': return this.delete(ctx, request as $1.DeleteCharacter);
       default: throw $core.ArgumentError('Unknown method: $method');
     }
   }

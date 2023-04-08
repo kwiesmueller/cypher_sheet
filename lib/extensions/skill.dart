@@ -32,3 +32,13 @@ extension Comparable on SkillLevel {
     return value.compareTo(other.value);
   }
 }
+
+extension ShareHelper on Skill {
+  SharedObject share() {
+    return SharedObject(
+      uuid: uuid,
+      name: name,
+      skill: this,
+    );
+  }
+}

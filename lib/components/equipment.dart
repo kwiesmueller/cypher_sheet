@@ -2,7 +2,7 @@ import 'package:cypher_sheet/components/dialog.dart';
 import 'package:cypher_sheet/extensions/item.dart';
 import 'package:cypher_sheet/state/providers/character.dart';
 import 'package:cypher_sheet/state/providers/items.dart';
-import 'package:cypher_sheet/views/dialogs/view_item.dart';
+import 'package:cypher_sheet/views/dialogs/object/item/view.dart';
 import 'package:flutter/material.dart';
 import 'package:cypher_sheet/components/box.dart';
 import 'package:cypher_sheet/components/cypher.dart';

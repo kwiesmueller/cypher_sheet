@@ -1,3 +1,4 @@
+import 'package:cypher_sheet/main.dart';
 import 'package:cypher_sheet/state/providers/character.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -44,6 +45,7 @@ class CharacterMeta extends ConsumerWidget {
               child: AppBox(
                 onTap: () {
                   ref.invalidate(characterListProvider);
+                  Navigator.of(context).pushReplacementNamed(routeCharacters);
                   ref.read(characterProvider.notifier).reset();
                 },
                 flat: true,

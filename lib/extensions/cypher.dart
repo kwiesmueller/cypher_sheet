@@ -14,3 +14,13 @@ extension CypherTypeHelper on CypherType {
     }
   }
 }
+
+extension ShareHelper on Cypher {
+  SharedObject share() {
+    return SharedObject(
+      uuid: uuid,
+      name: name,
+      cypher: this,
+    );
+  }
+}

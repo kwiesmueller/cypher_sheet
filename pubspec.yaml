@@ -1,7 +1,7 @@
 name: cypher_sheet
 description: A little fun project for a Cypher Character Sheet built in Flutter
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
-version: 1.0.15+4
+version: 1.1.0+5
 
 environment:
   sdk: ">=2.18.1 <3.0.0"
@@ -24,6 +24,7 @@ dependencies:
   url_launcher: ^6.1.10
   equatable: ^2.0.5
   grpc: ^3.1.0
+  receive_sharing_intent: ^1.4.5
 
 dev_dependencies:
   flutter_test:

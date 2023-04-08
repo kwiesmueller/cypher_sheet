@@ -3,8 +3,8 @@ import 'package:cypher_sheet/components/icons.dart';
 import 'package:cypher_sheet/extensions/note.dart';
 import 'package:cypher_sheet/proto/character.pb.dart';
 import 'package:cypher_sheet/state/providers/notes.dart';
-import 'package:cypher_sheet/views/dialogs/create_note.dart';
-import 'package:cypher_sheet/views/dialogs/view_note.dart';
+import 'package:cypher_sheet/views/dialogs/object/note/update.dart';
+import 'package:cypher_sheet/views/dialogs/object/note/view.dart';
 import 'package:flutter/material.dart';
 import 'package:cypher_sheet/components/box.dart';
 import 'package:cypher_sheet/components/icon.dart';
@@ -51,7 +51,7 @@ class NoteListItem extends ConsumerWidget {
                   padding: 4,
                   size: 24,
                   onTap: () {
-                    showAppDialog(context, CreateNote.fromState(note));
+                    showAppDialog(context, UpdateNote(note));
                   }),
             ],
           ),

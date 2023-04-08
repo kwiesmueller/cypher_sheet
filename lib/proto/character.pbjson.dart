@@ -371,3 +371,24 @@ const Note$json = const {
 
 /// Descriptor for `Note`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List noteDescriptor = $convert.base64Decode('CgROb3RlEhIKBHV1aWQYASABKAlSBHV1aWQSFAoFdGl0bGUYAiABKAlSBXRpdGxlEicKBHR5cGUYAyABKA4yEy5jaGFyYWN0ZXIuTm90ZVR5cGVSBHR5cGUSKgoQc2hvcnREZXNjcmlwdGlvbhgEIAEoCVIQc2hvcnREZXNjcmlwdGlvbhISCgR0ZXh0GAUgASgJUgR0ZXh0');
+@$core.Deprecated('Use sharedObjectDescriptor instead')
+const SharedObject$json = const {
+  '1': 'SharedObject',
+  '2': const [
+    const {'1': 'uuid', '3': 2, '4': 1, '5': 9, '10': 'uuid'},
+    const {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'character', '3': 10, '4': 1, '5': 11, '6': '.character.Character', '9': 0, '10': 'character'},
+    const {'1': 'skill', '3': 20, '4': 1, '5': 11, '6': '.character.Skill', '9': 0, '10': 'skill'},
+    const {'1': 'ability', '3': 30, '4': 1, '5': 11, '6': '.character.Ability', '9': 0, '10': 'ability'},
+    const {'1': 'cypher', '3': 40, '4': 1, '5': 11, '6': '.character.Cypher', '9': 0, '10': 'cypher'},
+    const {'1': 'artifact', '3': 50, '4': 1, '5': 11, '6': '.character.Artifact', '9': 0, '10': 'artifact'},
+    const {'1': 'item', '3': 60, '4': 1, '5': 11, '6': '.character.Item', '9': 0, '10': 'item'},
+    const {'1': 'note', '3': 70, '4': 1, '5': 11, '6': '.character.Note', '9': 0, '10': 'note'},
+  ],
+  '8': const [
+    const {'1': 'object'},
+  ],
+};
+
+/// Descriptor for `SharedObject`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List sharedObjectDescriptor = $convert.base64Decode('CgxTaGFyZWRPYmplY3QSEgoEdXVpZBgCIAEoCVIEdXVpZBISCgRuYW1lGAMgASgJUgRuYW1lEjQKCWNoYXJhY3RlchgKIAEoCzIULmNoYXJhY3Rlci5DaGFyYWN0ZXJIAFIJY2hhcmFjdGVyEigKBXNraWxsGBQgASgLMhAuY2hhcmFjdGVyLlNraWxsSABSBXNraWxsEi4KB2FiaWxpdHkYHiABKAsyEi5jaGFyYWN0ZXIuQWJpbGl0eUgAUgdhYmlsaXR5EisKBmN5cGhlchgoIAEoCzIRLmNoYXJhY3Rlci5DeXBoZXJIAFIGY3lwaGVyEjEKCGFydGlmYWN0GDIgASgLMhMuY2hhcmFjdGVyLkFydGlmYWN0SABSCGFydGlmYWN0EiUKBGl0ZW0YPCABKAsyDy5jaGFyYWN0ZXIuSXRlbUgAUgRpdGVtEiUKBG5vdGUYRiABKAsyDy5jaGFyYWN0ZXIuTm90ZUgAUgRub3RlQggKBm9iamVjdA==');

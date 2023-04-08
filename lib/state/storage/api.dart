@@ -14,7 +14,7 @@ Future<void> writeCharacterRevisionToAPI(Character character) async {
   try {
     final stub = CharactersClient(channel);
     var response =
-        await stub.writeCharacterRevision(WriteCharacter(character: character));
+        await stub.writeCharacterRevision(WriteRevision(character: character));
     log('Uploaded character: $response');
   } catch (e) {
     log('Caught error: $e');

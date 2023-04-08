@@ -49,6 +49,7 @@ enum AppIcons {
   edit,
   deleteForever,
   share,
+  import,
   devMode;
 
   @override
@@ -145,6 +146,8 @@ String iconName(AppIcons from) {
       return "delete_forever";
     case AppIcons.share:
       return "share";
+    case AppIcons.import:
+      return "system_update_alt";
     case AppIcons.devMode:
       return "developer_mode";
   }

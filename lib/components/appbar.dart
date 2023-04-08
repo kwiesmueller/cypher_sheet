@@ -33,6 +33,7 @@ class AppBar extends StatelessWidget {
           child: child,
         ),
       ),
+      automaticallyImplyLeading: false,
     );
   }
 }

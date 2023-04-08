@@ -2,7 +2,7 @@ import 'package:cypher_sheet/components/dialog.dart';
 import 'package:cypher_sheet/extensions/pool.dart';
 import 'package:cypher_sheet/extensions/skill.dart';
 import 'package:cypher_sheet/state/providers/skills.dart';
-import 'package:cypher_sheet/views/dialogs/view_skill.dart';
+import 'package:cypher_sheet/views/dialogs/object/skill/view.dart';
 import 'package:flutter/material.dart';
 import 'package:cypher_sheet/components/box.dart';
 import 'package:cypher_sheet/components/icon.dart';

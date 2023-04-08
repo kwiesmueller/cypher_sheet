@@ -1,4 +1,3 @@
-import 'package:cypher_sheet/components/number.dart';
 import 'package:cypher_sheet/components/scroll.dart';
 import 'package:cypher_sheet/state/providers/character.dart';
 import 'package:flutter/material.dart';
