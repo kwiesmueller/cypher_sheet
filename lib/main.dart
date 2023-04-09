@@ -3,13 +3,10 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cypher_sheet/components/box.dart';
-import 'package:cypher_sheet/components/dialog.dart';
 import 'package:cypher_sheet/components/text.dart';
-import 'package:cypher_sheet/extensions/shared_object.dart';
 import 'package:cypher_sheet/proto/character.pb.dart';
 import 'package:cypher_sheet/state/providers/import.dart';
 import 'package:cypher_sheet/state/providers/style.dart';
-import 'package:cypher_sheet/views/dialogs/object/cypher/editable.dart';
 import 'package:cypher_sheet/views/import_character_selection.dart';
 import 'package:cypher_sheet/views/scaffold.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +16,7 @@ import 'package:cypher_sheet/state/observer.dart';
 import 'package:cypher_sheet/views/characters.dart';
 import 'package:cypher_sheet/views/character_sheet/view.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:uri_to_file/uri_to_file.dart';
 
 void main() {
   runApp(
@@ -34,6 +32,7 @@ class CypherSheetApp extends ConsumerStatefulWidget {
 
 class _CypherSheetAppState extends ConsumerState<CypherSheetApp> {
   late StreamSubscription _intentDataStreamSubscription;
+  late StreamSubscription _intentTextDataStreamSubscription;
 
   @override
   void initState() {
@@ -44,16 +43,27 @@ class _CypherSheetAppState extends ConsumerState<CypherSheetApp> {
       _intentDataStreamSubscription = ReceiveSharingIntent.getMediaStream()
           .listen((List<SharedMediaFile> value) {
         log("received media stream");
-        importFile(value);
+        importMediaFile(value);
       }, onError: (err) {
         log("getIntentDataStream error: $err");
       });
+      _intentTextDataStreamSubscription =
+          ReceiveSharingIntent.getTextStream().listen(
+        (String value) {
+          log("received text stream");
+          importUri(value);
+        },
+      );
 
       // For sharing coming from outside the app while the app is closed
       ReceiveSharingIntent.getInitialMedia()
           .then((List<SharedMediaFile> value) {
         log("received initial media");
-        importFile(value);
+        importMediaFile(value);
+      });
+      ReceiveSharingIntent.getInitialText().then((value) {
+        log("received initial text");
+        importUri(value);
       });
     }
   }
@@ -61,10 +71,11 @@ class _CypherSheetAppState extends ConsumerState<CypherSheetApp> {
   @override
   void dispose() {
     _intentDataStreamSubscription.cancel();
+    _intentTextDataStreamSubscription.cancel();
     super.dispose();
   }
 
-  void importFile(List<SharedMediaFile> value) {
+  void importMediaFile(List<SharedMediaFile> value) {
     if (value.isEmpty) {
       log("Empty list of files");
       return;
@@ -74,10 +85,47 @@ class _CypherSheetAppState extends ConsumerState<CypherSheetApp> {
       return;
     }
     log("opening shared media: ${value.first.path}");
-    final file = File(value.first.path);
+    importUri(value.first.path);
+  }
+
+  void importUri(String? uri) {
+    if (uri == null) {
+      log("Empty uri");
+      return;
+    }
+
+    if (uri.startsWith("content://")) {
+      importContentUri(uri);
+      return;
+    }
+
+    final file = File(uri);
+    importFile(file);
+  }
+
+  void importContentUri(String uri) async {
+    try {
+      File file = await toFile(uri);
+      importFile(file);
+    } on UnsupportedError catch (e) {
+      log(e.message ?? "$e");
+    } on IOException catch (e) {
+      log("$e");
+    } catch (e) {
+      log("$e");
+    }
+  }
+
+  void importFile(File file) {
+    if (ref.read(importActiveProvider)) {
+      log("import already ongoing, skipping");
+      return;
+    }
+    ref.read(importActiveProvider.notifier).state = true;
+
     final raw = file.readAsBytesSync();
     final obj = SharedObject.fromBuffer(raw);
-
+    file.deleteSync();
     ref.read(importObjectProvider.notifier).state = obj;
     ReceiveSharingIntent.reset();
   }
@@ -155,29 +203,6 @@ class _CypherSheetAppState extends ConsumerState<CypherSheetApp> {
 const String routeCharacters = "/characters";
 const String routeCharacter = "/character";
 const String routeImportSelectCharacter = "/import/select_character";
-
-class ImportDialog extends ConsumerWidget {
-  const ImportDialog(EditableCypher Function() param0, {super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final import = ref.watch(importObjectProvider);
-    return WillPopScope(
-      onWillPop: () async {
-        ref.read(importObjectProvider.notifier).state = SharedObject();
-        return false;
-      },
-      child: AppScaffold(
-        body: AppDialog(
-          fullscreen: true,
-          child: import.importDialog(onCancel: () {
-            ref.read(importObjectProvider.notifier).state = SharedObject();
-          }),
-        ),
-      ),
-    );
-  }
-}
 
 class UnknownPage extends StatelessWidget {
   const UnknownPage({super.key});

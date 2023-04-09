@@ -145,6 +145,7 @@ class _CharacterSheetState extends ConsumerState<CharacterSheet>
 
   void onImportClosed() {
     ref.read(importObjectProvider.notifier).state = SharedObject();
+    ref.read(importActiveProvider.notifier).state = false;
     closeDialog(context);
   }
 
@@ -152,6 +153,7 @@ class _CharacterSheetState extends ConsumerState<CharacterSheet>
         _tabController.index =
             findTabIndexForSharedObject(import.whichObject());
         ref.read(importObjectProvider.notifier).state = SharedObject();
+        ref.read(importActiveProvider.notifier).state = false;
       };
 
   @override
